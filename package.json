@@ -1,0 +1,57 @@
+{
+  "name": "binary-document-uploader",
+  "version": "1.0.23",
+  "description": "Upload files to binary.com platform",
+  "main": "DocumentUploader.js",
+  "scripts": {
+    "test": "eslint src && jest --forceExit",
+    "build": "webpack",
+    "prepublishOnly": "npm run build",
+    "precommit": "lint-staged"
+  },
+  "babel": {
+    "presets": [
+      [
+        "env",
+        {
+          "targets": {
+            "browsers": [
+              "> 1%"
+            ]
+          },
+          "useBuiltIns": true
+        }
+      ]
+    ],
+    "plugins": [
+      "babel-plugin-loop-optimizer"
+    ]
+  },
+  "lint-staged": {
+    "*.js": [
+      "prettier-eslint --write",
+      "git add"
+    ]
+  },
+  "author": "Amin Marashi <marashisamin at gmail>",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-jest": "^20.0.3",
+    "babel-loader": "^7.1.2",
+    "babel-minify-webpack-plugin": "^0.2.0",
+    "babel-plugin-loop-optimizer": "^1.4.1",
+    "babel-preset-env": "^1.6.0",
+    "base64-js": "^1.2.1",
+    "eslint": "^4.5.0",
+    "eslint-config-airbnb-base": "^11.3.2",
+    "eslint-config-binary": "^1.0.2",
+    "eslint-config-prettier": "^2.3.0",
+    "eslint-plugin-import": "^2.7.0",
+    "jest": "^20.0.4",
+    "lint-staged": "^4.0.3",
+    "prettier-eslint-cli": "^4.2.1",
+    "sha1": "^1.1.1",
+    "webpack": "^3.5.5",
+    "ws": "^3.1.0"
+  }
+}
