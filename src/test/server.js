@@ -1,5 +1,5 @@
 import WebSocket from 'ws';
-import sha1 from 'sha1';
+import md5 from 'md5';
 import stripMetadata from './stripMetadata';
 import { pushToBuffer } from '../tools';
 
@@ -35,7 +35,7 @@ function onBinary(ws, bytes) {
                 document_upload: {
                     status   : 'success',
                     size     : stashed.received_bytes.length,
-                    checksum : sha1(Array.from(stashed.received_bytes)),
+                    checksum : md5(Array.from(stashed.received_bytes)),
                     upload_id: uploadId,
                     call_type: callType,
                 },

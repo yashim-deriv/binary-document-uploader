@@ -1,6 +1,6 @@
 {
   "name": "binary-document-uploader",
-  "version": "1.0.23",
+  "version": "2.0.0",
   "description": "Upload files to binary.com platform",
   "main": "DocumentUploader.js",
   "scripts": {
@@ -50,8 +50,10 @@
     "jest": "^20.0.4",
     "lint-staged": "^4.0.3",
     "prettier-eslint-cli": "^4.2.1",
-    "sha1": "^1.1.1",
     "webpack": "^3.5.5",
     "ws": "^3.1.0"
+  },
+  "dependencies": {
+    "md5": "^2.2.1"
   }
 }

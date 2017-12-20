@@ -1,4 +1,4 @@
-import sha1 from 'sha1';
+import md5 from 'md5';
 import { generateChunks, addMetadata, createError } from './tools';
 
 export default class Client {
@@ -9,7 +9,7 @@ export default class Client {
 
         const { buffer } = file;
 
-        this.checksum = sha1(Array.from(buffer));
+        this.checksum = md5(Array.from(buffer));
         this.size = buffer.length;
     }
     requestUpload() {
