@@ -14,10 +14,10 @@ export default class Client {
     }
     requestUpload() {
         const {
-            documentType: document_type,
-            documentFormat: document_format,
-            documentId: document_id,
-            expirationDate: expiration_date,
+            documentType: document_type, // eslint-disable-line camelcase
+            documentFormat: document_format, // eslint-disable-line camelcase
+            documentId: document_id, // eslint-disable-line camelcase
+            expirationDate: expiration_date, // eslint-disable-line camelcase
             buffer,
         } = this.file;
 
