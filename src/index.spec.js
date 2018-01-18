@@ -1,4 +1,4 @@
-import { createError, MAX_SIZE, HUMAN_READABLE_MAX_SIZE, typeToNameMap } from './tools';
+import { createError, MAX_SIZE, HUMAN_READABLE_MAX_SIZE} from './tools';
 import DocumentUploader from './';
 
 const mockConnection = { readyState: 1, send() {} };
@@ -8,20 +8,6 @@ describe('Max file size error', () => {
         expect(testUploader({ buffer: new Uint8Array(Array(MAX_SIZE + 1)) })).toThrow(
             createError('FileSizeError', `The maximum acceptable file size is ${HUMAN_READABLE_MAX_SIZE}`)
         );
-    });
-});
-
-describe('Mandatory fields', () => {
-    it('should check the mandatory fields to be given', () => {
-        ['passport', 'proofid', 'driverslicense'].forEach(type => {
-            expect(testUploader({ documentType: type, documentId: '', expirationDate: '2020-01-01' })).toThrow(
-                createError('DocumentId', `Document ID is required for ${typeToNameMap[type]} scans`)
-            );
-
-            expect(testUploader({ documentType: type, documentId: '12312', expirationDate: '' })).toThrow(
-                createError('ExpirationDate', `Expiration Date is required for ${typeToNameMap[type]} scans`)
-            );
-        });
     });
 });
 
