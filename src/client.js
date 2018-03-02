@@ -23,14 +23,15 @@ export default class Client {
 
         this.send(
             JSON.stringify({
-                req_id         : this.reqId,
-                passthrough    : { document_upload: true },
-                document_upload: 1,
+                req_id           : this.reqId,
+                passthrough      : { document_upload: true },
+                document_upload  : 1,
                 document_type,
-                document_format: document_format.toUpperCase(),
+                document_format  : document_format.toUpperCase(),
                 expiration_date,
                 document_id,
-                file_size      : buffer.length,
+                file_size        : buffer.length,
+                expected_checksum: this.checksum,
             })
         );
     }
