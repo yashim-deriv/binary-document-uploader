@@ -42,9 +42,10 @@ export function log(debug, ...args) {
     console.log(`${new Date()}:`, ...args);
 }
 
-export function createError(code, error) {
+export function createError(code, error, echoReq) {
     const newError = new Error(error.message || error.message_to_client || error);
     newError.name = error.code || code;
+    newError.echo_req  = echoReq || {};
     return newError;
 }
 
@@ -92,4 +93,3 @@ function numToUint8Array(num) {
     dv.setUint32(0, num);
     return typedArray;
 }
-
