@@ -35,13 +35,13 @@ export default class Client {
             })
         );
     }
-    handleMessage({ error, document_upload: uploadInfo, echoReq, passthrough }) {
+    handleMessage({ error, document_upload: uploadInfo, passthrough }) {
         // Duplicate upload error
         if (error && error.code === 'DuplicateUpload') {
-            return { warning: 'DuplicateUpload', message: error.message };
+            return { warning: 'DuplicateUpload', message: error.message, passthrough };
         }
         if (error) {
-            throw createError('ApiError', error, echoReq);
+            throw createError('ApiError', error);
         }
 
         const { checksum, size, upload_id: uploadId, call_type: callType } = uploadInfo;

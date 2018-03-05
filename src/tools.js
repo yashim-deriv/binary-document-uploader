@@ -42,10 +42,9 @@ export function log(debug, ...args) {
     console.log(`${new Date()}:`, ...args);
 }
 
-export function createError(code, error, echoReq) {
+export function createError(code, error) {
     const newError = new Error(error.message || error.message_to_client || error);
     newError.name = error.code || code;
-    newError.echo_req  = echoReq || {};
     return newError;
 }
 
