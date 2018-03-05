@@ -38,7 +38,7 @@ export default class Client {
     handleMessage({ error, document_upload: uploadInfo, echoReq, passthrough }) {
         // Duplicate upload error
         if (error && error.code === 'DuplicateUpload') {
-            return { warning: 'DuplicateUpload' };
+            return { warning: 'DuplicateUpload', message: error.message };
         }
         if (error) {
             throw createError('ApiError', error, echoReq);
