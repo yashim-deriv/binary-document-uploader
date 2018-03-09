@@ -20,21 +20,26 @@ export default class Client {
             expirationDate: expiration_date, // eslint-disable-line camelcase
             buffer,
         } = this.file;
-
+        const passthrough = Object.assign(this.file.passthrough || {}, {document_upload: true});
         this.send(
             JSON.stringify({
-                req_id         : this.reqId,
-                passthrough    : { document_upload: true },
-                document_upload: 1,
+                req_id           : this.reqId,
+                passthrough,
+                document_upload  : 1,
                 document_type,
-                document_format: document_format.toUpperCase(),
+                document_format  : document_format.toUpperCase(),
                 expiration_date,
                 document_id,
-                file_size      : buffer.length,
+                file_size        : buffer.length,
+                expected_checksum: this.checksum,
             })
         );
     }
-    handleMessage({ error, document_upload: uploadInfo }) {
+    handleMessage({ error, document_upload: uploadInfo, passthrough }) {
+        // Duplicate upload error
+        if (error && error.code === 'DuplicateUpload') {
+            return { warning: 'DuplicateUpload', message: error.message, passthrough };
+        }
         if (error) {
             throw createError('ApiError', error);
         }
@@ -54,7 +59,7 @@ export default class Client {
             throw createError('ChecksumMismatch', 'Checksum does not match');
         }
 
-        return uploadInfo;
+        return {document_upload: uploadInfo, passthrough};
     }
     startBinaryUpload(file) {
         addMetadata(generateChunks(file.buffer, file), file).forEach(chunk => this.send(chunk));

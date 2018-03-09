@@ -92,4 +92,3 @@ function numToUint8Array(num) {
     dv.setUint32(0, num);
     return typedArray;
 }
-
