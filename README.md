@@ -4,7 +4,7 @@ Uploading files through websocket to binary.com platform
 # Installation
 
 ```
-npm install binary-document-uploader
+npm install @binary-com/binary-document-uploader
 ```
 
 # Usage

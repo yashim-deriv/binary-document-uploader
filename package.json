@@ -3,6 +3,14 @@
   "version": "2.3.2",
   "description": "Upload files to binary.com platform",
   "main": "DocumentUploader.js",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/binary-com/binary-document-uploader.git"
+  },
+  "homepage": "https://github.com/binary-com/binary-document-uploader/blob/master/README.md",
+  "keywords": [
+    "binary.com"
+  ],
   "scripts": {
     "test": "eslint src && jest --forceExit",
     "build": "webpack",
