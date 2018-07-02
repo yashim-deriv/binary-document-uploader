@@ -1,7 +1,7 @@
 const WORD_SIZE = 4;
 
-export const MAX_SIZE = 3 * 2 ** 20;
-export const HUMAN_READABLE_MAX_SIZE = '3 MB';
+export const MAX_SIZE = 8 * 2 ** 20;
+export const HUMAN_READABLE_MAX_SIZE = '8 MB';
 
 export const generateChunks = (binary, { chunkSize = 16384 /* 16KB */ }) => {
     const chunks = [];
