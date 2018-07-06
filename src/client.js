@@ -18,6 +18,7 @@ export default class Client {
             documentFormat: document_format, // eslint-disable-line camelcase
             documentId: document_id, // eslint-disable-line camelcase
             expirationDate: expiration_date, // eslint-disable-line camelcase
+            pageType: page_type,
             buffer,
         } = this.file;
         const passthrough = Object.assign(this.file.passthrough || {}, {document_upload: true});
@@ -32,6 +33,7 @@ export default class Client {
                 document_id,
                 file_size        : buffer.length,
                 expected_checksum: this.checksum,
+                ...(page_type && { page_type }), // add if page_type is not undefined
             })
         );
     }
