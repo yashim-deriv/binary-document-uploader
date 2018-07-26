@@ -7,6 +7,25 @@ Uploading files through websocket to binary.com platform
 npm install @binary-com/binary-document-uploader
 ```
 
+# Publishing a new version
+
+### With npm
+
+First increase the version in `package.json` according to major/minor/patch. Ideally this will be done in the same PR as your changes. After that, you can run:
+```
+npm run build
+npm publish
+```
+
+### With yarn
+
+Yarn automatically increases the version for you, so you only need to run:
+```
+yarn publish
+```
+
+The resulting `DocumentUploader.js` should be committed and uploaded to this repository.
+
 # Usage
 
 ### ES6
