@@ -13,26 +13,33 @@ export default class Client {
         this.size = buffer.length;
     }
     requestUpload() {
+        /* eslint-disable camelcase */
         const {
-            documentType: document_type, // eslint-disable-line camelcase
-            documentFormat: document_format, // eslint-disable-line camelcase
-            documentId: document_id, // eslint-disable-line camelcase
-            expirationDate: expiration_date, // eslint-disable-line camelcase
+            documentType: document_type,
+            documentFormat: document_format,
+            documentId: document_id,
+            expirationDate: expiration_date,
+            pageType: page_type,
             buffer,
         } = this.file;
         const passthrough = Object.assign(this.file.passthrough || {}, {document_upload: true});
+        const request = {
+            req_id           : this.reqId,
+            passthrough,
+            document_upload  : 1,
+            document_type,
+            document_format  : document_format.toUpperCase(),
+            expiration_date,
+            document_id,
+            file_size        : buffer.length,
+            expected_checksum: this.checksum,
+        };
+        if (page_type) {
+            request.page_type = page_type;
+        }
+        /* eslint-enable camelcase */
         this.send(
-            JSON.stringify({
-                req_id           : this.reqId,
-                passthrough,
-                document_upload  : 1,
-                document_type,
-                document_format  : document_format.toUpperCase(),
-                expiration_date,
-                document_id,
-                file_size        : buffer.length,
-                expected_checksum: this.checksum,
-            })
+            JSON.stringify(request)
         );
     }
     handleMessage({ error, document_upload: uploadInfo, passthrough }) {
