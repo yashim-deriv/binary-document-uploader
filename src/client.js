@@ -44,11 +44,8 @@ export default class Client {
     }
     handleMessage({ error, document_upload: uploadInfo, passthrough }) {
         // Duplicate upload error
-        if (error && error.code === 'DuplicateUpload') {
-            return { warning: 'DuplicateUpload', message: error.message, passthrough };
-        }
         if (error) {
-            throw createError('ApiError', error);
+            return { warning: error.code, message: error.message, passthrough };
         }
 
         const { checksum, size, upload_id: uploadId, call_type: callType } = uploadInfo;
@@ -59,11 +56,11 @@ export default class Client {
         }
 
         if (size !== this.size) {
-            throw createError('SizeMismatch', 'File size does not match');
+            throw createError('SizeMismatch', 'File size does not match', passthrough);
         }
 
         if (checksum !== this.checksum) {
-            throw createError('ChecksumMismatch', 'Checksum does not match');
+            throw createError('ChecksumMismatch', 'Checksum does not match', passthrough);
         }
 
         return {document_upload: uploadInfo, passthrough};
