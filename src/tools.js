@@ -42,9 +42,10 @@ export function log(debug, ...args) {
     console.log(`${new Date()}:`, ...args);
 }
 
-export function createError(code, error) {
+export function createError(code, error, passthrough) {
     const newError = new Error(error.message || error.message_to_client || error);
     newError.name = error.code || code;
+    newError.passthrough = passthrough;
     return newError;
 }
 
