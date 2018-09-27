@@ -50,8 +50,12 @@ export default class DocumentUploader {
             log(debug, '<Received>:', data);
 
             const json = JSON.parse(data);
-            const { passthrough: { document_upload: isDocumentUpload } } = json;
+            if (originalOnMessage && (!json.passthrough || !json.passthrough.document_upload)) {
+                originalOnMessage.call(connection, response);
+                return;
+            }
 
+            const { passthrough: { document_upload: isDocumentUpload } } = json;
             if (originalOnMessage && !isDocumentUpload) {
                 originalOnMessage.call(connection, response);
                 return;
