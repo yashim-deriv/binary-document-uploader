@@ -46,7 +46,7 @@
   "devDependencies": {
     "babel-eslint": "^10.0.1",
     "babel-jest": "^24.1.0",
-    "babel-loader": "^8.0.5",
+    "babel-loader": "^7.1.2",
     "babel-minify-webpack-plugin": "^0.3.1",
     "babel-plugin-loop-optimizer": "^1.4.1",
     "babel-preset-env": "^1.6.0",
@@ -60,6 +60,7 @@
     "lint-staged": "^8.1.4",
     "prettier-eslint-cli": "^4.2.1",
     "webpack": "^4.29.5",
+    "webpack-cli": "^3.2.3",
     "ws": "^6.1.4"
   },
   "dependencies": {
