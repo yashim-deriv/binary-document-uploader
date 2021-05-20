@@ -93,6 +93,9 @@ Document format
 ## `file.expirationDate` (optional)
 
 Expiration date
+## `file.lifetimeValid` (optional)
+
+Boolean value that indicates whether this document is lifetime valid (only applies to POI document types, cancels out the expiration_date given if any)
 
 ## `file.chunkSize`
 
