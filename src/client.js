@@ -19,6 +19,7 @@ export default class Client {
             documentFormat: document_format,
             documentId: document_id,
             expirationDate: expiration_date,
+            lifetimeValid: lifetime_valid,
             pageType: page_type,
             buffer,
         } = this.file;
@@ -30,6 +31,7 @@ export default class Client {
             document_type,
             document_format  : document_format.toUpperCase(),
             expiration_date,
+            lifetime_valid,
             document_id,
             file_size        : buffer.length,
             expected_checksum: this.checksum,
