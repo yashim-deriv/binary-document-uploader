@@ -31,13 +31,15 @@ export default class Client {
             document_type,
             document_format  : document_format.toUpperCase(),
             expiration_date,
-            lifetime_valid,
             document_id,
             file_size        : buffer.length,
             expected_checksum: this.checksum,
         };
         if (page_type) {
             request.page_type = page_type;
+        }
+        if (lifetime_valid) {
+            request.lifetime_valid = lifetime_valid;
         }
         /* eslint-enable camelcase */
         this.send(
