@@ -19,6 +19,7 @@ export default class Client {
             documentFormat: document_format,
             documentId: document_id,
             expirationDate: expiration_date,
+            lifetimeValid: lifetime_valid,
             pageType: page_type,
             buffer,
         } = this.file;
@@ -36,6 +37,9 @@ export default class Client {
         };
         if (page_type) {
             request.page_type = page_type;
+        }
+        if (lifetime_valid) {
+            request.lifetime_valid = lifetime_valid;
         }
         /* eslint-enable camelcase */
         this.send(
