@@ -22,6 +22,7 @@ export default class Client {
             lifetimeValid: lifetime_valid,
             pageType: page_type,
             buffer,
+            proof_of_ownership,
         } = this.file;
         const passthrough = Object.assign(this.file.passthrough || {}, {document_upload: true});
         const request = {
@@ -41,7 +42,10 @@ export default class Client {
         if (lifetime_valid) {
             request.lifetime_valid = lifetime_valid;
         }
-        /* eslint-enable camelcase */
+        if (proof_of_ownership) {
+            request.proof_of_ownership = proof_of_ownership;
+        }
+    /* eslint-enable camelcase */
         this.send(
             JSON.stringify(request)
         );
