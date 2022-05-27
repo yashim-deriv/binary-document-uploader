@@ -45,7 +45,6 @@ export default class Client {
         if (proof_of_ownership) {
             request.proof_of_ownership = proof_of_ownership;
         }
-    /* eslint-enable camelcase */
         this.send(
             JSON.stringify(request)
         );
